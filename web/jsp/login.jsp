@@ -13,7 +13,7 @@
         <title>Log in</title>
     </head>
     <body>
-        <form name="klinika" method="post" action ="klinika">
+        <form name="klinika" method="post" action ="action/login">
             <input type="hidden" name="login">
             <table> 
                 <tr>
