@@ -15,11 +15,11 @@ public class LoginAction implements Action {
     private static final String POLJE_ZA_KORISNICKO_IME = "korisnickoIme";
     private static final String POLJE_ZA_SIFRU = "sifra";
     private static final String ERROR_PAGE = "error";
-    private static final int DOKTOR_ROLE = 1;
+    private static final int DOKTOR_ROLE = 3;
     private static final int SESTRA_ROLE = 2;
-    private static final int OSIGURANO_LICE_ROLE = 3;
+    private static final int OSIGURANO_LICE_ROLE = 1;
     //ToDo
-    private static final String SESSION_ATTRIBUTE = "/";
+    private static final String KORISNIK_ATTRIBUTE = "korisnik";
 
     @Override
     public String obradiZahtev(HttpServletRequest request) {
@@ -40,7 +40,7 @@ public class LoginAction implements Action {
             }
 
             HttpSession session = request.getSession(true);
-            session.setAttribute(SESSION_ATTRIBUTE, korisnik);
+            request.setAttribute(KORISNIK_ATTRIBUTE , korisnik);
 
             int uloga = korisnik.getUloges().get(0).getIdUloge();
 

@@ -12,6 +12,34 @@
         <title>Izbor lekara</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form name="klinika" method="post" action ="../action">
+        <input type="hidden" name="action" value="">
+        <input type="hidden" name="osiguranoLiceID" value="">    
+         <table> 
+                <tr>
+                    <td>Izbor lekara</td>
+                </tr>
+                <tr>
+                    <td>Stari lekar:</td>
+                    <td>
+                        <select>
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Novi lekar:</td>
+                    <td>
+                        <select>
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#"/>Potvrdi</td>
+                    <td><a href="#"/>Odustani</td>
+                </tr>
+            </table>
+       </form>
     </body>
 </html>

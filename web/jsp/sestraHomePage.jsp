@@ -10,27 +10,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script text="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <title>Osigurano lice</title>
+        <title>Sestra</title>
     </head>
     <body>
-       <form name="klinika" method="post" action ="klinika">
-            <input type="hidden" name="action" value="">
+       <form name="klinika" method="post" action ="../action">
+        <input type="hidden" name="action" value="">
+        <input type="hidden" name="osiguranoLiceID" value="">    
          <table> 
                 <tr>
                     <td><a href="#" onclick="izborLekaraForm()">Izbor lekara</a></td>
-                    <td><a href="#" onclick="podnosenjeZahtevaForm()">Podnošenje zahteva</td>
+                    <td id="pregledSestra"><a href="#" onclick="pregledSestraForm()">Podnošenje zahteva</td>
                 </tr>
             </table>
        </form>
     </body>
 <script>
     function izborLekaraForm() {
-       document.klinika.action.values = "izborLekaraForm";
+       document.klinika.action.values = "../action/izborLekaraForm";
        document.klinika.submit();
     }
     
-    function podnosenjeZahtevaForm() {
-       alert('Zahtev je poslat');
+    function pregledSestraForm() {
+        document.klinika.action.values = "../action/pregledSestraForm";
+        alert('Zahtev je poslat');
+        $("#pregledSestra").text("Poslat zahtev");
+        document.klinika.submit();
+
     }
 </script>
 </html>

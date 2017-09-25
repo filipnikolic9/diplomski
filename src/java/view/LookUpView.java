@@ -10,9 +10,9 @@ public class LookUpView {
     //ToDo
     private static final String ERROR_PAGE = "/";
     private static final String LOGIN = "/";
-    private static final String DOKTOR_HOME_PAGE = "/";
+    private static final String DOKTOR_HOME_PAGE = "/doktorHomePage.jsp";
     private static final String SESTRA_HOME_PAGE = "/";
-    private static final String OSIGURANO_LICE_HOME_PAGE = "/";
+    private static final String OSIGURANO_LICE_HOME_PAGE = "/jsp/osiguranoLiceHomePage.jsp";
     private static final String IZMENA_NADLEZNOG_LEKARA = "/";
 
     public static String getView(String name) {

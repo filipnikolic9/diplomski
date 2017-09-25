@@ -34,7 +34,7 @@ public class FrontController extends HttpServlet {
         System.out.println("Path: "+path);
         
         String view= appCont.obradiZahtev(path, request);
-        String page=LookUpView.getView(path);
+        String page=LookUpView.getView(view);
         RequestDispatcher rd=getServletContext().getRequestDispatcher(page);
         rd.forward(request, response);
         
