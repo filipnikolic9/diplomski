@@ -5,10 +5,6 @@
  */
 package view;
 
-/**
- *
- * @author aleksa.buha
- */
 public class LookUpView {
 
     //ToDo

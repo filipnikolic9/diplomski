@@ -7,10 +7,6 @@ package action;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- *
- * @author aleksa.buha
- */
 public interface Action {
     public String obradiZahtev(HttpServletRequest request);
 }

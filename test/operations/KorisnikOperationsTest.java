@@ -9,10 +9,6 @@ import model.Korisnik;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author aleksa.buha
- */
 public class KorisnikOperationsTest {
     
     public KorisnikOperationsTest() {

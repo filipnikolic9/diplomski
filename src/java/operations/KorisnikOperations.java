@@ -13,10 +13,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
 
-/**
- *
- * @author aleksa.buha
- */
 public class KorisnikOperations {
 
     SessionFactory sFactory = null;

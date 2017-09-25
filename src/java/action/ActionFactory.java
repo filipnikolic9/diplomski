@@ -5,10 +5,6 @@
  */
 package action;
 
-/**
- *
- * @author aleksa.buha
- */
 public class ActionFactory {
     //ToDo
     private static final String LOGIN="/login";

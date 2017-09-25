@@ -10,10 +10,6 @@ import javax.servlet.http.HttpSession;
 import model.Korisnik;
 import operations.KorisnikOperations;
 
-/**
- *
- * @author aleksa.buha
- */
 public class LoginAction implements Action {
 
     private static final String POLJE_ZA_KORISNICKO_IME = "korisnickoIme";
