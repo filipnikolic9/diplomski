@@ -9,7 +9,11 @@ import action.Action;
 import action.ActionFactory;
 import javax.servlet.http.HttpServletRequest;
 
-public class ApplicationController {
+/**
+ *
+ * @author aleksa.buha
+ */
+public  class ApplicationController {
     public String obradiZahtev(String path, HttpServletRequest request){
         Action akcija=ActionFactory.createAction(path);
         return akcija.obradiZahtev(request);

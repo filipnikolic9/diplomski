@@ -29,8 +29,8 @@ public class LoginAction implements Action {
             strana = "login";
         }
         if (request.getMethod().equalsIgnoreCase("POST")) {
-            String korisnickoIme = request.getParameter(request.getParameter(POLJE_ZA_KORISNICKO_IME));
-            String korisnickaSifra = request.getParameter(request.getParameter(POLJE_ZA_SIFRU));
+            String korisnickoIme = request.getParameter(POLJE_ZA_KORISNICKO_IME);
+            String korisnickaSifra = request.getParameter(POLJE_ZA_SIFRU);
 
             Korisnik korisnik = KorisnikOperations.getIntance().getKorisnikWithUserNameAndPassword(korisnickoIme, korisnickaSifra);
             if (korisnik == null) {

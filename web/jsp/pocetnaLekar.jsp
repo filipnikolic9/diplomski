@@ -12,10 +12,7 @@
             <link rel="stylesheet" href="js/jquery.datetimepicker.full.min.js">
             <script text="text/javascript" src="js/jquery-3.2.1.min.js"></script>
             <link rel="stylesheet" type="text/css" href="js/jquery.datetimepicker.css"/>
-            <script src="js/jquery.js"></script>
             <script src="js/jquery.datetimepicker.full.min.js"></script>
-
-
             <title>Diplomski</title>
         </head>
         <body>
@@ -24,9 +21,6 @@
             <input type="hidden" name="action" value="unosTermina">
             <input type="hidden" name="rbr" value="">
             <table> 
-                <tr>
-                    <td>Lekar: </td>
-                </tr>
                 <tr>
                     <td>Termin</td>
                     <td><input id="datetimepicker" type="input" name="termin" ></td>
@@ -48,7 +42,14 @@
     var rbr = 1;
     var nizTermina = [];
     $( function() {
-        $( "#datetimepicker" ).datetimepicker();
+        $( "#datetimepicker" ).datetimepicker({
+             allowTimes:[
+                '07:00', '07:30', '08:00', '08:30', '09:00', 
+                '09:30', '10:00', '10:30', '11:00', '11:30',
+                '12:00', '12:30', '13:00', '13:30'
+               ]
+
+        });
     } );
     
     

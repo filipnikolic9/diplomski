@@ -29,7 +29,8 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String path=request.getPathInfo();
+       String path=request.getPathInfo();
+       // String path = request.getParameter("action");
         System.out.println("Path: "+path);
         
         String view= appCont.obradiZahtev(path, request);
@@ -82,6 +83,6 @@ public class FrontController extends HttpServlet {
 
     @Override
     public void init() throws ServletException{
-    
+    appCont = new ApplicationController();
     }
 }
