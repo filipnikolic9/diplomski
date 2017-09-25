@@ -9,12 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script text="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script text="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
         <title>Log in</title>
     </head>
     <body>
-        <form name="klinika" method="post" action ="action/login">
-            <input type="hidden" name="login">
+        <form name="klinika" method="post" action ="../action/login">
+            <input type="hidden" name="action" value="/login">
             <table> 
                 <tr>
                     <td>Korisničko ime:</td>

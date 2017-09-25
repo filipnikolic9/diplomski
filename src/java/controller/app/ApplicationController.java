@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author aleksa.buha
  */
-public class ApplicationController {
+public  class ApplicationController {
     public String obradiZahtev(String path, HttpServletRequest request){
         Action akcija=ActionFactory.createAction(path);
         return akcija.obradiZahtev(request);
