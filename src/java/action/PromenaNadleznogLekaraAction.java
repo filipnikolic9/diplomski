@@ -8,7 +8,9 @@ package action;
 import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javax.servlet.http.HttpServletRequest;
+import model.Korisnik;
 import model.Lekar;
+import model.Osiguranolice;
 import operations.LekarOperations;
 import operations.OsiguranoLiceOperations;
 

@@ -5,10 +5,19 @@
  */
 package action;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.Korisnik;
+import model.Lekar;
+import model.Osiguranolice;
+import model.Sestra;
+import model.Zahtev;
 import operations.KorisnikOperations;
+import operations.LekarOperations;
+import operations.OsiguranoLiceOperations;
+import operations.SestraOperations;
+import operations.ZahteviOperations;
 
 public class LoginAction implements Action {
 
@@ -18,6 +27,7 @@ public class LoginAction implements Action {
     private static final int DOKTOR_ROLE = 3;
     private static final int SESTRA_ROLE = 2;
     private static final int OSIGURANO_LICE_ROLE = 1;
+    private static final String LEKARI_ATRIBUT="lekari";
     //ToDo
     private static final String KORISNIK_ATTRIBUTE = "korisnik";
 
@@ -40,7 +50,6 @@ public class LoginAction implements Action {
             }
 
             HttpSession session = request.getSession(true);
-            request.setAttribute(KORISNIK_ATTRIBUTE , korisnik);
 
             int uloga = korisnik.getUloges().get(0).getIdUloge();
 
@@ -50,9 +59,15 @@ public class LoginAction implements Action {
                     break;
                 case SESTRA_ROLE:
                     strana = "sestraHomePage";
+                    Sestra sestra=napuniObjekatSestra(korisnik);
+                    session.setAttribute(KORISNIK_ATTRIBUTE, sestra);
+                    List<Lekar> lekari=LekarOperations.getIntance().getLekari();
+                    request.setAttribute(LEKARI_ATRIBUT, lekari);
                     break;
                 case OSIGURANO_LICE_ROLE:
                     strana = "osiguranoLiceHomePage";
+                    Osiguranolice ol = napuniOsiguranoLice(korisnik);
+                    session.setAttribute(KORISNIK_ATTRIBUTE, ol);
                     break;
                 default:
                     strana = ERROR_PAGE;
@@ -60,6 +75,14 @@ public class LoginAction implements Action {
             }
         }
         return strana;
+    }
+
+    private Osiguranolice napuniOsiguranoLice(Korisnik korisnik) {
+        return OsiguranoLiceOperations.getIntance().napuniOl(korisnik);
+    }
+
+    private Sestra napuniObjekatSestra(Korisnik korisnik) {
+       return SestraOperations.getIntance().napuniObjekatSestra(korisnik);
     }
 
 }

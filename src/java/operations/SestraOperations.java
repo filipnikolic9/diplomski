@@ -5,10 +5,11 @@
  */
 package operations;
 
-import java.util.List;
+import model.Korisnik;
 import model.Lekar;
+import model.Osiguranolice;
+import model.Sestra;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
@@ -17,31 +18,31 @@ import util.HibernateUtil;
  *
  * @author aleksa.buha
  */
-public class LekarOperations {
+public class SestraOperations {
+      SessionFactory sFactory = null;
 
-    SessionFactory sFactory = null;
+    private static SestraOperations instace;
 
-    private static LekarOperations instace;
-
-    public static LekarOperations getIntance() {
+    public static SestraOperations getIntance() {
         if (instace == null) {
-            instace = new LekarOperations();
+            instace = new SestraOperations();
         }
         return instace;
     }
 
-    private LekarOperations() {
+    private SestraOperations() {
         sFactory = HibernateUtil.getSessionFactory();
     }
 
-    public List<Lekar> getLekari() {
-        List<Lekar> lekari = null;
-        try {
+    public Sestra napuniObjekatSestra(Korisnik korisnik) {
+         Sestra sestra=null;
+               try {
             Session session = sFactory.openSession();
-            Query q = session.createQuery("from Lekar as lekar");
-            lekari = q.list();
+             sestra = (Sestra) session.get(Sestra.class, korisnik.getUserId());
+
         } catch (HibernateException e) {
+            System.out.println(e);
         }
-        return lekari;
+               return sestra;
     }
 }

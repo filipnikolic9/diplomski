@@ -4,6 +4,7 @@
     Author     : nemanjanikolic
 --%>
 
+<%@page import="model.Osiguranolice"%>
 <%@page import="model.Korisnik"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,31 +15,36 @@
         <title>Osigurano lice</title>
     </head>
     <body>
-         <% 
-            Korisnik k = (Korisnik) request.getAttribute("korisnik");
+        <%
+            Osiguranolice ol = (Osiguranolice) session.getAttribute("korisnik");
+            Korisnik k = ol.getKorisnikByUserId();
         %>
-       <form name="klinika" method="post" action ="klinika">
+
         <input type="hidden" name="action" value="">
-        <input type="hidden" name="korisnikID" value="<%=k.getUserId() %>">
-         <table> 
-                <tr>
-                    <td>Osigurano lice: <%=k.getIme() + " " + k.getPrezime() %></td>
-                </tr>
-                <tr>
-                    <td><a href="#" onclick="izborLekaraForm()">Izbor lekara</a></td>
-                    <td><a id="zahtev" href="#" onclick="podnosenjeZahtevaForm()">Podnošenje zahteva</td>
-                </tr>
-            </table>
-       </form>
-    </body>
+        <table> 
+            <tr>
+                <td>Osigurano lice: <%=k.getIme() + " " + k.getPrezime()%></td>
+            </tr>
+            <tr>
+            <form name="form1" method="GET" action ="../action/promenaLekara">
+                <td><a href="#" onclick="izborLekaraForm()">Izbor lekara</a></td>
+            </form>
+            <form name="form2" method="GET" action ="../action/podnosenjeZahteva">
+                <input type="hidden" name="idOl" value="<%=k.getUserId()%>">
+                <td><a id="zahtev" href="#" onclick="podnosenjeZahtevaForm()">Podnošenje zahteva</td>
+            </form>>
+        </tr>
+    </table>
+</body>
 <script>
     function izborLekaraForm() {
-       document.klinika.action.values = "izborLekaraForm";
-       document.klinika.submit();
+        document.form1.action.values = "izborLekaraForm";
+        document.form1.submit();
     }
-    
+
     function podnosenjeZahtevaForm() {
-       $("#zahtev").text('Zahtev je poslat');
+        $("#zahtev").text('Zahtev je poslat');
+        document.form2.submit();
     }
 </script>
 </html>

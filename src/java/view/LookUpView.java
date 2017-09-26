@@ -13,7 +13,7 @@ public class LookUpView {
     private static final String DOKTOR_HOME_PAGE = "/doktorHomePage.jsp";
     private static final String SESTRA_HOME_PAGE = "/";
     private static final String OSIGURANO_LICE_HOME_PAGE = "/jsp/osiguranoLiceHomePage.jsp";
-    private static final String IZMENA_NADLEZNOG_LEKARA = "/";
+    private static final String IZMENA_NADLEZNOG_LEKARA = "/jsp/izborLekara.jsp";
 
     public static String getView(String name) {
         String view = null;

@@ -5,10 +5,13 @@
  */
 package operations;
 
+import java.util.List;
 import model.Korisnik;
 import model.Lekar;
 import model.Osiguranolice;
+import model.Zahtev;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
@@ -17,45 +20,46 @@ import util.HibernateUtil;
  *
  * @author aleksa.buha
  */
-public class OsiguranoLiceOperations {
+public class ZahteviOperations {
 
+    public static String ZAHTEV = "NOVI_ZAHTEV_ZA_PREGLEDOM";
     SessionFactory sFactory = null;
 
-    private static OsiguranoLiceOperations instace;
+    private static ZahteviOperations instace;
 
-    public static OsiguranoLiceOperations getIntance() {
+    public static ZahteviOperations getIntance() {
         if (instace == null) {
-            instace = new OsiguranoLiceOperations();
+            instace = new ZahteviOperations();
         }
         return instace;
     }
 
-    private OsiguranoLiceOperations() {
+    private ZahteviOperations() {
         sFactory = HibernateUtil.getSessionFactory();
     }
 
-    public void promeniNadleznogLekara(int idOl, int idLekara) {
+    public void noviZahtev(int ol) {
         try {
             Session session = sFactory.openSession();
             org.hibernate.Transaction transaction = session.beginTransaction();
-            Osiguranolice ol = (Osiguranolice) session.get(Osiguranolice.class, idOl);
-            Lekar lekar = (Lekar) session.get(Lekar.class, idLekara);
-            ol.setKorisnikByNadlezniLekar(lekar.getKorisnik());
+            Korisnik k = (Korisnik) session.get(Korisnik.class, ol);
+            Zahtev zahtev = new Zahtev(0, k, ZAHTEV);
+            session.persist(zahtev);
             transaction.commit();
         } catch (HibernateException e) {
             System.out.println(e);
         }
     }
 
-    public Osiguranolice napuniOl(Korisnik korisnik) {
-        Osiguranolice ol = null;
+    public List<Zahtev> vratiSve() {
+        List<Zahtev> zahtevi = null;
         try {
             Session session = sFactory.openSession();
-            ol = (Osiguranolice) session.get(Osiguranolice.class, korisnik.getUserId());
-
+            Query q = session.createQuery("from Zahtev as zahtev");
+            zahtevi = q.list();
         } catch (HibernateException e) {
-            System.out.println(e);
         }
-        return ol;
+        return zahtevi;
     }
+
 }
