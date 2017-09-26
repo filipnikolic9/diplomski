@@ -7,10 +7,12 @@ package operations;
 
 import java.util.List;
 import model.Lekar;
+import model.Raspored;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import util.HibernateUtil;
 
 /**
@@ -43,5 +45,29 @@ public class LekarOperations {
         } catch (HibernateException e) {
         }
         return lekari;
+    }
+    
+    public Lekar getLekar(int id){
+        Lekar lekar=null;
+        try {
+            Session session= sFactory.openSession();
+            lekar=(Lekar) session.get(Lekar.class, id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return lekar;
+    }
+
+    public void sacuvajTermine(List<Raspored> termini) {
+        try {
+            Session session=sFactory.openSession();
+            Transaction transaction=session.beginTransaction();
+            for (Raspored raspored : termini) {
+                session.persist(raspored);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

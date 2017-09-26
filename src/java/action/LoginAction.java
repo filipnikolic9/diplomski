@@ -56,6 +56,8 @@ public class LoginAction implements Action {
             switch (uloga) {
                 case DOKTOR_ROLE:
                     strana = "doktorHomePage";
+                    Lekar lekar=LekarOperations.getIntance().getLekar(korisnik.getUserId());
+                    session.setAttribute(KORISNIK_ATTRIBUTE, lekar);
                     break;
                 case SESTRA_ROLE:
                     strana = "sestraHomePage";

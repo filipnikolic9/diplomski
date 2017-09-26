@@ -4,22 +4,25 @@
     Author     : nemanjanikolic
 --%>
 
+<%@page import="model.Lekar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
  <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <link rel="stylesheet" href="js/jquery.datetimepicker.full.min.js">
-            <script text="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="js/jquery.datetimepicker.css"/>
-            <script src="js/jquery.datetimepicker.full.min.js"></script>
+            <link rel="stylesheet" href="../js/jquery.datetimepicker.full.min.js">
+            <script text="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="../js/jquery.datetimepicker.css"/>
+            <script src="../js/jquery.datetimepicker.full.min.js"></script>
             <title>Diplomski</title>
         </head>
         <body>
+            <% Lekar l=(Lekar)session.getAttribute("korisnik"); %>
             <h1>Lekar : </h1>
-            <form name="klinika" method="post" action ="klinika">
+            <form name="klinika" method="POST" action ="../action/unesiTermine">
             <input type="hidden" name="action" value="unosTermina">
             <input type="hidden" name="rbr" value="">
+            <input type="hidden" name="lekar" value="<%= l.getUserId() %>">
             <table> 
                 <tr>
                     <td>Termin</td>
@@ -85,7 +88,7 @@
     }
     
     function sacuvajTermine() {
-        document.klinika.rbr.values = rbr;
+        document.klinika.rbr.value = rbr;
         document.klinika.submit();
     }
 </script>
