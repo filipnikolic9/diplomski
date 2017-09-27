@@ -14,7 +14,7 @@ public class LookUpView {
     private static final String SESTRA_HOME_PAGE = "/jsp/sestraHomePage.jsp";
     private static final String OSIGURANO_LICE_HOME_PAGE = "/jsp/osiguranoLiceHomePage.jsp";
     private static final String IZMENA_NADLEZNOG_LEKARA = "/jsp/izborLekara.jsp";
-    private static final  String ZAKAZIVANJE_TERMINA="/jsp/zakazivanjeTermina.jsp";
+    private static final  String ZAKAZIVANJE_TERMINA="/jsp/pregledSestra.jsp";
 
     public static String getView(String name) {
         String view = null;

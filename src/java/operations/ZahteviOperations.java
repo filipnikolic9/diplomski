@@ -14,11 +14,13 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import util.HibernateUtil;
 
 public class ZahteviOperations {
 
-    public static String ZAHTEV = "NOVI_ZAHTEV_ZA_PREGLEDOM";
+    private static final String NOVI_ZAHTEV = "NOVI_ZAHTEV_ZA_PREGLEDOM";
+    private static final String ZAHTEV_OBRADJEN = "ZAHTEV_OBRADJEN";
     SessionFactory sFactory = null;
 
     private static ZahteviOperations instace;
@@ -39,7 +41,7 @@ public class ZahteviOperations {
             Session session = sFactory.openSession();
             org.hibernate.Transaction transaction = session.beginTransaction();
             Korisnik k = (Korisnik) session.get(Korisnik.class, ol);
-            Zahtev zahtev = new Zahtev(0, k, ZAHTEV);
+            Zahtev zahtev = new Zahtev(0, k, NOVI_ZAHTEV);
             session.persist(zahtev);
             transaction.commit();
         } catch (HibernateException e) {
@@ -70,6 +72,19 @@ public class ZahteviOperations {
             System.out.println(e);
         }
         return zahtevi;
+    }
+
+    public void obradiZahtev(int idZahteva) {
+        try {
+            Session session=sFactory.openSession();
+            Transaction transaction=session.beginTransaction();
+            Zahtev z=(Zahtev) session.get(Zahtev.class, idZahteva);
+            z.setStanje(ZAHTEV_OBRADJEN);
+            session.persist(z);
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }

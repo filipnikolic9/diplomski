@@ -52,6 +52,7 @@ public class OsiguranoLiceOperations {
         try {
             Session session = sFactory.openSession();
             ol = (Osiguranolice) session.get(Osiguranolice.class, korisnik.getUserId());
+            ol.getKorisnikByUserId().getPregledsForOsiguranoLice().size();
 
         } catch (HibernateException e) {
             System.out.println(e);

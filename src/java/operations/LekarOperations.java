@@ -5,7 +5,9 @@
  */
 package operations;
 
+import java.util.Date;
 import java.util.List;
+import model.Korisnik;
 import model.Lekar;
 import model.Raspored;
 import org.hibernate.HibernateException;
@@ -20,6 +22,7 @@ import util.HibernateUtil;
  * @author aleksa.buha
  */
 public class LekarOperations {
+private static final String ZAUZET="ZAUZET";
 
     SessionFactory sFactory = null;
 
@@ -46,12 +49,12 @@ public class LekarOperations {
         }
         return lekari;
     }
-    
-    public Lekar getLekar(int id){
-        Lekar lekar=null;
+
+    public Lekar getLekar(int id) {
+        Lekar lekar = null;
         try {
-            Session session= sFactory.openSession();
-            lekar=(Lekar) session.get(Lekar.class, id);
+            Session session = sFactory.openSession();
+            lekar = (Lekar) session.get(Lekar.class, id);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -60,12 +63,33 @@ public class LekarOperations {
 
     public void sacuvajTermine(List<Raspored> termini) {
         try {
-            Session session=sFactory.openSession();
-            Transaction transaction=session.beginTransaction();
+            Session session = sFactory.openSession();
+            Transaction transaction = session.beginTransaction();
             for (Raspored raspored : termini) {
                 session.persist(raspored);
             }
             transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void rezervisiTermin(int idLekara, Date datum) {
+        try {
+            Session session = sFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+            List<Raspored> listaRasporeda = null;
+            Korisnik korisnik = (Korisnik) session.get(Korisnik.class, idLekara);
+            Query query = session.createQuery("from Raspored as raspored WHERE (raspored.korisnik= :korisnik) AND (raspored.datum= :datum)");
+            listaRasporeda = (List<Raspored>) query.list().get(0);
+            if (listaRasporeda == null) {
+                throw new Exception();
+            }else{
+                Raspored raspored=listaRasporeda.get(0);
+                raspored.setStanje(ZAUZET);
+                transaction.commit();
+            }
+
         } catch (Exception e) {
             System.out.println(e);
         }

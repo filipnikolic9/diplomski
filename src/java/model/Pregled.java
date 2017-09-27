@@ -27,7 +27,7 @@ public class Pregled  implements java.io.Serializable {
      private Korisnik korisnikByOsiguranoLice;
      private Korisnik korisnikByMedicinskaSestra;
      private Date termin;
-     private String lokacija;
+     private String stanje;
 
     public Pregled() {
     }
@@ -39,12 +39,12 @@ public class Pregled  implements java.io.Serializable {
         this.korisnikByMedicinskaSestra = korisnikByMedicinskaSestra;
         this.termin = termin;
     }
-    public Pregled(int pregledId, Korisnik korisnikByOsiguranoLice, Korisnik korisnikByMedicinskaSestra, Date termin, String lokacija) {
+    public Pregled(int pregledId, Korisnik korisnikByOsiguranoLice, Korisnik korisnikByMedicinskaSestra, Date termin, String stanje) {
        this.pregledId = pregledId;
        this.korisnikByOsiguranoLice = korisnikByOsiguranoLice;
        this.korisnikByMedicinskaSestra = korisnikByMedicinskaSestra;
        this.termin = termin;
-       this.lokacija = lokacija;
+       this.stanje=stanje;
     }
    
      @Id 
@@ -89,17 +89,14 @@ public class Pregled  implements java.io.Serializable {
         this.termin = termin;
     }
 
-    
-    @Column(name="lokacija", length=20)
-    public String getLokacija() {
-        return this.lokacija;
+ @Column(name="stanje", length=20)
+    public String getStanje() {
+        return this.stanje;
     }
     
-    public void setLokacija(String lokacija) {
-        this.lokacija = lokacija;
+    public void setStanje(String stanje) {
+        this.stanje = stanje;
     }
-
-
 
 
 }
