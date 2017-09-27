@@ -41,8 +41,8 @@ public class LoginAction implements Action {
         if (request.getMethod().equalsIgnoreCase("POST")) {
             String korisnickoIme = request.getParameter(POLJE_ZA_KORISNICKO_IME);
             String korisnickaSifra = request.getParameter(POLJE_ZA_SIFRU);
-
             Korisnik korisnik = KorisnikOperations.getIntance().getKorisnikWithUserNameAndPassword(korisnickoIme, korisnickaSifra);
+            
             if (korisnik == null) {
                 errorMessage = "Korisnicko ime i/ili sifra nisu dobri";
                 strana = ERROR_PAGE;
@@ -50,7 +50,6 @@ public class LoginAction implements Action {
             }
 
             HttpSession session = request.getSession(true);
-
             int uloga = korisnik.getUloges().get(0).getIdUloge();
 
             switch (uloga) {

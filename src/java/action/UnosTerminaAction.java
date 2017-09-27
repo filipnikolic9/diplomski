@@ -39,7 +39,7 @@ public class UnosTerminaAction implements Action {
                     try {
                         datum = sdf.parse(termin);
                     } catch (ParseException ex) {
-                        System.out.println("OVO SRANJE NIJE DOBROOOOO! DATUM JE SRANJE");
+                        System.out.println("Datum nije dobar!");
                     }
                     if (datum == null) {
                         return page;
@@ -48,7 +48,6 @@ public class UnosTerminaAction implements Action {
                 }
             }
             LekarOperations.getIntance().sacuvajTermine(termini);
-            System.out.println("SACUVANO!!!");
         }
         return page;
     }

@@ -11,6 +11,8 @@ public class ActionFactory {
     private static final String PROMENA_NADLEZNOG_LEKARA="/promenaLekara";
     private static final String PODNOSENJE_ZAHTEVA_ZA_PREGLEDOM="/podnosenjeZahteva";
     private static final String UNOS_TERMINA="/unesiTermine";
+    private static final String ZAKAZIVANJE_TERMINA="/zakaziTermin";
+    
     public static Action createAction(String path){
         Action action=null;
         
@@ -32,6 +34,10 @@ public class ActionFactory {
           
             if(path.equalsIgnoreCase(UNOS_TERMINA)){
             action=new UnosTerminaAction();
+        }
+            
+             if(path.equalsIgnoreCase(ZAKAZIVANJE_TERMINA)){
+            action=new ZakazivanjeTerminaSestraAction();
         }
           
         return action;

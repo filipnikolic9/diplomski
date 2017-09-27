@@ -11,9 +11,10 @@ public class LookUpView {
     private static final String ERROR_PAGE = "/";
     private static final String LOGIN = "/";
     private static final String DOKTOR_HOME_PAGE = "/jsp/kreiranjeTermina.jsp";
-    private static final String SESTRA_HOME_PAGE = "/";
+    private static final String SESTRA_HOME_PAGE = "/jsp/sestraHomePage.jsp";
     private static final String OSIGURANO_LICE_HOME_PAGE = "/jsp/osiguranoLiceHomePage.jsp";
     private static final String IZMENA_NADLEZNOG_LEKARA = "/jsp/izborLekara.jsp";
+    private static final  String ZAKAZIVANJE_TERMINA="/jsp/zakazivanjeTermina.jsp";
 
     public static String getView(String name) {
         String view = null;
@@ -29,7 +30,6 @@ public class LookUpView {
             view = DOKTOR_HOME_PAGE;
         }
         if (name.equalsIgnoreCase("sestraHomePage")) {
-
             view = SESTRA_HOME_PAGE;
         }
         if (name.equalsIgnoreCase("osiguranoLiceHomePage")) {
@@ -38,6 +38,11 @@ public class LookUpView {
         if (name.equalsIgnoreCase("izmenaNadleznogLekara")) {
             view = IZMENA_NADLEZNOG_LEKARA;
         }
+        
+         if (name.equalsIgnoreCase("zakazivanjeTermina")) {
+            view = ZAKAZIVANJE_TERMINA;
+        }
+      
         return view;
     }
 }

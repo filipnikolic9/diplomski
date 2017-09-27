@@ -16,10 +16,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import util.HibernateUtil;
 
-/**
- *
- * @author aleksa.buha
- */
 public class ZahteviOperations {
 
     public static String ZAHTEV = "NOVI_ZAHTEV_ZA_PREGLEDOM";
@@ -58,6 +54,20 @@ public class ZahteviOperations {
             Query q = session.createQuery("from Zahtev as zahtev");
             zahtevi = q.list();
         } catch (HibernateException e) {
+        }
+        return zahtevi;
+    }
+
+    public List<Zahtev> getZahteveZaPregledZaLekara(int idLekara) {
+          List<Zahtev> zahtevi = null;
+        try {
+            Session session = sFactory.openSession();
+            Query q = session.createQuery("from Zahtev as zahtev WHERE (zahtev.korisnik.osiguranoliceByUserId.korisnikByNadlezniLekar.userId= :idLekara) AND (zahtev.stanje= :stanje)");
+            q.setParameter("idLekara", idLekara);
+            q.setParameter("stanje","NOVI_ZAHTEV_ZA_PREGLEDOM");
+            zahtevi = q.list();
+        } catch (HibernateException e) {
+            System.out.println(e);
         }
         return zahtevi;
     }
