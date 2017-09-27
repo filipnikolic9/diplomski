@@ -12,31 +12,34 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <link rel="stylesheet" href="../js/jquery.datetimepicker.full.min.js">
             <script text="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="../css/loginKlinika.css"/>
             <link rel="stylesheet" type="text/css" href="../js/jquery.datetimepicker.css"/>
             <script src="../js/jquery.datetimepicker.full.min.js"></script>
             <title>Diplomski</title>
         </head>
         <body>
-            <% Lekar l=(Lekar)session.getAttribute("korisnik"); %>
-            <h1>Lekar : </h1>
+            
             <form name="klinika" method="POST" action ="../action/unesiTermine">
             <input type="hidden" name="action" value="unosTermina">
             <input type="hidden" name="rbr" value="">
-            <input type="hidden" name="lekar" value="<%= l.getUserId() %>">
-            <table> 
+            <input type="hidden" name="lekar" value="">
+            <table class="form-container" style="float: right; width: 100%; margin: 0px; margin-bottom: 100px" >
+                <tr><td>Lekar: Marko Simeonovic <img style="float: right; width: 20px;height: 20px;" src="../css/img/logout.png"></td></tr>
+            </table>
+            <table class="form-container" style="margin-top:  100px;  width: 50%;"> 
                 <tr>
                     <td>Termin</td>
-                    <td><input id="datetimepicker" type="input" name="termin" ></td>
+                    <td><input id="datetimepicker" class="form-field" type="input" name="termin" ></td>
                 </tr>
                 <tr>
-                    <td><a href="#" onclick="noviTermin()">Novi termin</a></td>
-                    <td><a href="#" onclick="sacuvajTermine()">Sačuvaj termine</a></td>
+                    <td><a href="#" class="submit-button" onclick="noviTermin()">Novi termin</a></td>
+                    <td><a href="#" class="submit-button" onclick="sacuvajTermine()">Sačuvaj termine</a></td>
                 </tr>
             </table>
-            <table id="termini">
+            <table id="termini" class="form-container" style="margin-top:  100px;  width: 50%;">
                 <tr>
-                    <th>Termin</th>
-                    <th>Akcija</th>
+                    <th style="float: left">Termin</th>
+                    <th style="margin-left: 10px">Akcija</th>
                 </tr>   
             </table> 
         </form>
@@ -70,8 +73,8 @@
         
         if (postojiTermin == false) {
             var noviRed = '<tr>';
-            noviRed += '<td><input type="text" id="termini" name="termin' + rbr + '" value="' + termin + '"/></td>';
-            noviRed += '<td><a href="#" onClick="$(this).parent().parent().remove(); obrisi(' + rbr + ');">Obriši</td></tr>';
+            noviRed += '<td><input class="form-field" type="text" id="termini" name="termin' + rbr + '" value="' + termin + '"/></td>';
+            noviRed += '<td><a href="#" class="submit-button" onClick="$(this).parent().parent().remove(); obrisi(' + rbr + ');">Obriši</td></tr>';
             noviRed += '</tr>';
             $("#termini tr:last").after(noviRed);
             nizTermina.push(termin);

@@ -9,23 +9,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/loginKlinika.css"/>
         <script text="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
         <title>Log in</title>
     </head>
     <body>
-        <form name="klinika" method="post" action ="../action/login">
+        <form name="klinika" class="form-container" method="post" action ="../action/login">
             <input type="hidden" name="action" value="/login">
             <table> 
                 <tr>
                     <td>Korisničko ime:</td>
-                    <td><input id = "korisnickoIme" type="text" name="korisnickoIme"></td>
+                    <td><input id = "korisnickoIme" class="form-field" type="text" name="korisnickoIme"></td>
                 </tr>
                 <tr>
                     <td>Šifra:</td>
-                    <td><input id ="sifra" type="password" name="sifra"></td>
+                    <td><input id ="sifra" class="form-field" type="password" name="sifra"></td>
                 </tr>
                 <tr>
-                    <td><a href="#" onclick="potvrdi()">Potvrdi</a></td>
+                    <td><a class="submit-button" href="#" onclick="potvrdi()">Potvrdi</a></td>
                 </tr>
             </table>
         </form>

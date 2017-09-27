@@ -9,27 +9,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/loginKlinika.css"/>
         <script text="text/javascript" src="js/jquery-3.2.1.min.js"></script>
         <title>Osigurano lice</title>
     </head>
     <body>
+        <table class="form-container" style="float: right; width: 100%; margin: 0px; margin-bottom: 100px" >
+            <tr><td>Sestra: Ivana Ivanovic <img style="float: right; width: 20px;height: 20px;" src="../css/img/logout.png"></td></tr>
+        </table>
+
        <form name="klinika" method="post" action ="klinika">
             <input type="hidden" name="action" value="podnosenjeZahteva">
-         <table> 
-                <tr>
-                    <td>Izabrani lekar:</td>
-                    <td></td>
+         <table class="form-container"> 
+             <tr>
+                    <th>Osigurano lice </th>
+                     <th>Termini: </th>
                 </tr>
                 <tr>
-                    <td>Termini: </td>
+                    <td>Ivan Bogdanovic</td>
                     <td>
-                        <select>
+                        <select class="opp">
                             <option>12-12-2017 10:00</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td><a href="#">Podnesi zahtev</td>
+                    <td colspan="3" style="padding-top: 4px;"><a class="submit-button" href="#">Potvrdi</td>
                 </tr>
             </table>
        </form>
